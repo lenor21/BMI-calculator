@@ -5,8 +5,6 @@ const resetButton = document.querySelector("#resetButton");
 const myResult = document.querySelector("#myResult");
 const myClassification = document.querySelector("#myClassification");
 
-console.log(Number.isInteger(heightInput.value));
-
 calculateButton.addEventListener("click", () => {
   let height = Math.pow(heightInput.value * 0.01, 2);
   let weight = weightInput.value;
@@ -14,17 +12,19 @@ calculateButton.addEventListener("click", () => {
 
   emptyInputs();
   resultNan();
-  bmiClassification();
 
   function emptyInputs() {
     if (heightInput.value == "" && weightInput.value == "") {
       alert("Please complete both inputs");
+      bmi = "";
+      myClassification.textContent = `Classification:`;
     } else if (heightInput.value == "") {
       alert("Please complete the height input");
     } else if (weightInput.value == "") {
       alert("Please complete the weight input");
     } else if (heightInput.value != "" && weightInput.value != "") {
       myResult.textContent = `Result: ${Math.round(bmi * 100) / 100}`;
+      bmiClassification();
     }
   }
 
